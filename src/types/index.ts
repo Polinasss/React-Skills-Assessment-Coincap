@@ -13,6 +13,6 @@ export interface IData {
   explorer: string;
 }
 
-export interface IMainProps {
+export interface IMain {
   data: IData[];
 }
