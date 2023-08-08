@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ListRender } from "./ListRender";
 import { IData } from "../../types";
 import { startData, Pagination } from "../../components";
+import styles from './Container.module.scss';
 
 export const Main: React.FC = () => {
   const [data, setData] = useState<IData[]>(startData);
@@ -19,16 +20,17 @@ export const Main: React.FC = () => {
   const currentIndexes = data.slice(firstIndex, lastIndex);
 
   const pageNumbers = [];
+
   for(let i = 1; i <= Math.ceil(data.length / countOfPages); i++) {
     pageNumbers.push(i);
   }
 
-  const paginate = (pageNumber: number) => setStartPage(pageNumber);
+  const setPaginate = (pageNumber: number) => setStartPage(pageNumber);
 
   return (
-    <>
+    <div className={styles.container}>
       <ListRender data={currentIndexes}/>
-      <Pagination pageNumbers={pageNumbers} paginate={paginate}/>
-    </>
+      <Pagination pageNumbers={pageNumbers} paginate={setPaginate}/>
+    </div>
   );
 };

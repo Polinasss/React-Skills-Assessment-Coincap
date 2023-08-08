@@ -1,15 +1,11 @@
-interface IPagination {
-  pageNumbers: number[];
-  paginate: (pageNumber: number) => void;
-}
-export const Pagination: React.FC<IPagination> = (
-  pageNumbers,
-  { paginate }
-) => {
+import { IPagination } from "../../types";
+import styles from './Pagination.module.scss';
+
+export const Pagination: React.FC<IPagination> = ( { paginate, pageNumbers } ) => {
   return (
-    <div>
+    <div className={styles.pagination}>
       <ul>
-        {pageNumbers.pageNumbers.map((num: number) => (
+        {pageNumbers.map((num: number) => (
           <li onClick={() => paginate(num)} key={num}>
             {num}
           </li>

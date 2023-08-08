@@ -16,3 +16,8 @@ export interface IData {
 export interface IMain {
   data: IData[];
 }
+
+export interface IPagination {
+  pageNumbers: number[];
+  paginate: (num: number) => void;
+}

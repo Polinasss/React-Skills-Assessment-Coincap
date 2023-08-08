@@ -1,0 +1,16 @@
+.pagination {
+    width: 70%;
+    margin: 0 auto;
+    ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+        justify-content: space-between;
+        li {
+            padding: 10px;
+            border: 2px solid #4E598C;
+            cursor: pointer;
+        }
+    }
+}
