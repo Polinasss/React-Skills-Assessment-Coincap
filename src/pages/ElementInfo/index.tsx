@@ -22,7 +22,7 @@ export const ElementInfo: React.FC = () => {
       <p>{data?.priceUsd}</p>
       <p>{data?.explorer}</p>
       
-      <button onClick={() => navigate(-1)}>Назад</button>
+      <button onClick={() => navigate(-1)}>go Back</button>
     </>
   );
 };

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { ListRender } from "./ListRender";
 import { IData } from "../../types";
-import { startData, Pagination } from "../../components";
-import styles from './Container.module.scss';
+import { Pagination } from "../../components";
+import { startData } from "../../data";
+import styles from "./Container.module.scss";
 
 export const Main: React.FC = () => {
   const [data, setData] = useState<IData[]>(startData);
@@ -21,7 +22,7 @@ export const Main: React.FC = () => {
 
   const pageNumbers = [];
 
-  for(let i = 1; i <= Math.ceil(data.length / countOfPages); i++) {
+  for (let i = 1; i <= Math.ceil(data.length / countOfPages); i++) {
     pageNumbers.push(i);
   }
 
@@ -29,8 +30,8 @@ export const Main: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <ListRender data={currentIndexes}/>
-      <Pagination pageNumbers={pageNumbers} paginate={setPaginate}/>
+      <ListRender data={currentIndexes} />
+      <Pagination pageNumbers={pageNumbers} paginate={setPaginate} />
     </div>
   );
 };
