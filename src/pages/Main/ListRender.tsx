@@ -1,13 +1,18 @@
-import { IMain } from "../../types";
+import { IData, IMain } from "../../types";
 import { Link, useAsyncValue } from "react-router-dom";
 import styles from "./Container.module.scss";
 import React, {useState} from "react";
 import { Pagination } from "../../components";
+import { Modal } from "../Modal";
+import { startData } from "../../data";
 
 export const ListRender: React.FC = () => {
   const {data} = useAsyncValue() as IMain;
   const [startPage, setStartPage] = useState(1);
   const [countOfPages, setCountOfPages] = useState(10);
+  const [modalWindow, setModalWindow] = useState<boolean>(false);
+  const [modalData, setModalData] = useState<IData>(startData[0]);
+
   const lastIndex = startPage * countOfPages;
   const firstIndex = lastIndex - countOfPages;
   const currentIndexes = data.slice(firstIndex, lastIndex);
@@ -16,9 +21,12 @@ export const ListRender: React.FC = () => {
      pageNumbers.push(i);
    }
   const setPaginate = (pageNumber: number) => setStartPage(pageNumber);
-  
+  const setModal = (val:boolean) => {
+    setModalWindow(val);
+  }
   return (
     <div>
+      <Modal modalWindow={modalWindow} setModalWindow={setModal} data={modalData}/>
       <table className={styles.table}>
         <thead>
           <th>Name</th>
@@ -34,7 +42,7 @@ export const ListRender: React.FC = () => {
               </th>
               <th>{obj.priceUsd}</th>
               <th>{obj.changePercent24Hr}</th>
-              <th>Add to portfolio</th>
+              <th><button onClick={() => {setModalWindow(true); setModalData(obj)}}>Add to portfolio</button></th>
             </tbody>
           );
         })}

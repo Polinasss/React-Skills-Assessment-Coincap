@@ -22,8 +22,20 @@ export interface IPagination {
   paginate: (num: number) => void;
 }
 export interface IInfo {
-  data: IData
+  data: IData;
 }
 export interface IElementInfo {
-  data: IInfo
-} 
+  data: IInfo;
+}
+
+export interface ICharts {
+  priceUsd: string;
+  time: number;
+  date: string;
+}
+
+export interface IModal {
+  modalWindow: boolean;
+  setModalWindow: (val: boolean) => void;
+  data: IData;
+}
