@@ -1,37 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { Suspense } from "react";
 import { ListRender } from "./ListRender";
-import { IData } from "../../types";
-import { Pagination } from "../../components";
-import { startData } from "../../data";
+import { IMain } from "../../types";
 import styles from "./Container.module.scss";
+import { useLoaderData, defer, Await } from "react-router-dom";
 
-export const Main: React.FC = () => {
-  const [data, setData] = useState<IData[]>(startData);
-  useEffect(() => {
-    fetch("https://api.coincap.io/v2/assets")
-      .then((response) => response.json())
-      .then((json) => setData(json.data));
-  }, []);
-
-  const [startPage, setStartPage] = useState(1);
-  const [countOfPages, setCountOfPages] = useState(10);
-
-  const lastIndex = startPage * countOfPages;
-  const firstIndex = lastIndex - countOfPages;
-  const currentIndexes = data.slice(firstIndex, lastIndex);
-
-  const pageNumbers = [];
-
-  for (let i = 1; i <= Math.ceil(data.length / countOfPages); i++) {
-    pageNumbers.push(i);
-  }
-
-  const setPaginate = (pageNumber: number) => setStartPage(pageNumber);
-
+const Main: React.FC = () => {
+  const { data } = useLoaderData() as IMain;
   return (
-    <div className={styles.container}>
-      <ListRender data={currentIndexes} />
-      <Pagination pageNumbers={pageNumbers} paginate={setPaginate} />
-    </div>
+    <Suspense fallback={<h2>loading...</h2>}>
+      <Await resolve={data}>
+        <div className={styles.container}>
+          <ListRender />
+        </div>
+      </Await>
+    </Suspense>
   );
 };
+async function getData() {
+  const response = await fetch("https://api.coincap.io/v2/assets");
+  return response.json();
+}
+export const mainLoader = async () => {
+  return defer({
+    data: getData(),
+  });
+};
+
+export default Main;

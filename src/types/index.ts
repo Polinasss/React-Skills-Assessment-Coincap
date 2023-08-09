@@ -21,3 +21,9 @@ export interface IPagination {
   pageNumbers: number[];
   paginate: (num: number) => void;
 }
+export interface IInfo {
+  data: IData
+}
+export interface IElementInfo {
+  data: IInfo
+} 
