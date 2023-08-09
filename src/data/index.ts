@@ -14,3 +14,7 @@ export const startData = [
     explorer: "",
   },
 ];
+
+export const startDataCharts = [
+  {priceUsd: '', time: 0, date: ''}
+]

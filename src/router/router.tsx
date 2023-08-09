@@ -1,8 +1,9 @@
 import React, { lazy } from "react";
 import { RouterProvider, Route, createBrowserRouter, createRoutesFromElements} from "react-router-dom";
 import { mainLoader, elementInfoLoader } from "../pages";
-import styles from "./Container.module.scss";
+import styles from "./Router.module.scss";
 import { Layout } from "../components";
+
 const LazyMain:React.FC = lazy(() => import(`../pages/Main/index`));
 const LazyElementInfo:React.FC = lazy(() => import(`../pages/ElementInfo`));
 
@@ -22,4 +23,5 @@ const Navigation: React.FC = () => {
     </div>
   );
 };
+
 export default Navigation;

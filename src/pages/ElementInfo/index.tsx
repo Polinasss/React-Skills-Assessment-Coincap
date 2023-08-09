@@ -1,26 +1,27 @@
-import React, { Suspense } from "react";
-import { useNavigate, useLoaderData, Await } from "react-router-dom";
-import { IElementInfo } from "../../types";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Charts } from "../../components";
+import { fetchData } from "../../api";
 
 const ElementInfo: React.FC = () => {
-  const { data } = useLoaderData() as IElementInfo;
+  const { id } = useParams();
   const navigate = useNavigate();
+  const [data, setData] = useState<any>();
+
+  useEffect(() => {
+    if (id) {
+      fetchData(id).then(setData);
+    }
+  }, [id]);
   return (
-    <>
-      <Suspense fallback={<h2>loading...</h2>}>
-        <Await resolve={data}>
-          {({ data }) => (
-            <>
-              <p>{data.id}</p>
-              <p>{data.name}</p>
-              <button onClick={() => navigate(-1)}>go Back</button>
-              {/* <Chart/> */}
-            </>
-          )}
-        </Await>
-      </Suspense>
-      
-    </>
+    data && (
+      <>
+        <p>{data.data.id}</p>
+        <p>{data.data.name}</p>
+        <button onClick={() => navigate(-1)}>go Back</button>
+        <Charts />
+      </>
+    )
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { ListRender } from "./ListRender";
 import { IMain } from "../../types";
-import styles from "./Container.module.scss";
+import styles from "./Main.module.scss";
 import { useLoaderData, defer, Await } from "react-router-dom";
 
 const Main: React.FC = () => {

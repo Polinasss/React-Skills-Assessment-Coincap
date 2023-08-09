@@ -1,24 +1,53 @@
-import React from "react";
-import { Bar } from "react-chartjs-2";
-import { Chart as ChartJS, BarElement } from "chart.js";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+import { ICharts } from '../../types';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { fetchData } from '../../api';
+import { startDataCharts } from '../../data';
 
-export const Charts: React.FC = () => {
-  ChartJS.register(BarElement);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+);
 
-  const data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
+export function Charts() {
+  const [data, setData] = useState<ICharts[]>(startDataCharts);
+  const { id } = useParams();
+  
+  useEffect(() => {
+    if (id) {
+      fetchData(`${id}/history?interval=d1`).then(res => setData(res.data.slice(0,10)));
+    }
+  }, [id]);
+
+  const arr: string[] = [];
+  data.forEach(el => arr.push(el.date))
+  console.log(arr);
+
+  const chartdatas:string[] = [];
+  data.forEach(el => chartdatas.push(el.priceUsd))
+  console.log(chartdatas);
+
+  const chartData = {
+    labels: arr,
     datasets: [
       {
-        label: "Dataset",
-        data: [10, 9, 11, 5, 7, 14, 12],
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        label: id,
+        data: chartdatas,
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'white',
       },
     ],
   };
 
-  return (
-    <>
-      <Bar data={data} />
-    </>
-  );
-};
+  return <Line data={chartData} />;
+}
