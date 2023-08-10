@@ -3,6 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchData } from "../../api";
 import { IMain } from "../../types";
+import { useNavigate } from "react-router-dom";
 
 export const Layout: React.FC = () => {
   const [data, setData] = useState<IMain>();
@@ -12,7 +13,11 @@ export const Layout: React.FC = () => {
   }, []);
 
   data?.data.sort((a, b) => Number(b.priceUsd) - Number(a.priceUsd));
-
+  
+  const navigate = useNavigate()
+  useEffect(() => {
+    navigate('/?page=1');
+  }, [])
   return (
     <>
       <header className={styles.header}>

@@ -1,13 +1,14 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { ListRender } from "./ListRender";
 import { IMain } from "../../types";
 import styles from "./Main.module.scss";
-import { useLoaderData, defer, Await, useLocation } from "react-router-dom";
+import { useLoaderData, defer, Await, useLocation, useNavigate } from "react-router-dom";
 import { fetchData } from "../../api";
 
 const Main: React.FC = () => {
   const { data } = useLoaderData() as IMain;
   const location = useLocation();
+  
   return (
     <Suspense fallback={<h2>loading...</h2>}>
       <Await resolve={data}>

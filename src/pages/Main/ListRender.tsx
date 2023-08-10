@@ -1,7 +1,7 @@
 import { IData, IMain } from "../../types";
-import { Link, useAsyncValue } from "react-router-dom";
+import { Link, useAsyncValue, useLocation } from "react-router-dom";
 import styles from "./Main.module.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Pagination } from "../../components";
 import { Modal } from "../";
 import { startData } from "../../data";
@@ -10,8 +10,9 @@ interface IListRender {
 }
 export const ListRender: React.FC<IListRender> = ({pageNum}) => {
   const { data } = useAsyncValue() as IMain;
+const location = useLocation()
 
-  const [startPage, setStartPage] = useState(pageNum);
+  const [startPage, setStartPage] = useState(pageNum = Number(location.search.slice(6)));
   const [countOfPages, setCountOfPages] = useState(10);
   const [modalWindow, setModalWindow] = useState<boolean>(false);
   const [modalData, setModalData] = useState<IData>(startData[0]);
@@ -28,6 +29,7 @@ export const ListRender: React.FC<IListRender> = ({pageNum}) => {
   const setModal = (val: boolean) => {
     setModalWindow(val);
   };
+
   return (
     <div>
       <Modal
