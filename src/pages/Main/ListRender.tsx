@@ -5,11 +5,13 @@ import React, { useState } from "react";
 import { Pagination } from "../../components";
 import { Modal } from "../";
 import { startData } from "../../data";
-
-export const ListRender: React.FC = () => {
+interface IListRender {
+  pageNum: number
+}
+export const ListRender: React.FC<IListRender> = ({pageNum}) => {
   const { data } = useAsyncValue() as IMain;
 
-  const [startPage, setStartPage] = useState(1);
+  const [startPage, setStartPage] = useState(pageNum);
   const [countOfPages, setCountOfPages] = useState(10);
   const [modalWindow, setModalWindow] = useState<boolean>(false);
   const [modalData, setModalData] = useState<IData>(startData[0]);
@@ -22,6 +24,7 @@ export const ListRender: React.FC = () => {
     pageNumbers.push(i);
   }
   const setPaginate = (pageNumber: number) => setStartPage(pageNumber);
+  
   const setModal = (val: boolean) => {
     setModalWindow(val);
   };
@@ -35,35 +38,45 @@ export const ListRender: React.FC = () => {
       <table className={styles.table}>
         <thead>
           <tr>
-          <td>Name</td>
-          <td>Price</td>
-          <td>Change(24Hr)</td>
-          <td>Action</td>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Market Cap</th>
+            <th>VWAP(24Hr)</th>
+            <th>Supply</th>
+            <th>Volume</th>
+            <th>Change(24Hr)</th>
+            <th></th>
           </tr>
         </thead>
-        {currentIndexes.map((obj) => {
-          return (
-            <tbody key={obj.id}>
-              <tr>
+        <tbody>
+          {currentIndexes.map((obj) => {
+            return (
+              <tr key={obj.id}>
+                <td>{obj.rank}</td>
                 <td>
                   <Link to={`/${obj.id}`}>{obj.name}</Link>
                 </td>
-                <td>{obj.priceUsd}</td>
-                <td>{obj.changePercent24Hr}</td>
+                <td>{'$' + Number(obj.priceUsd).toFixed(2)}</td>
+                <td>{'$' + (new Intl.NumberFormat("de-DE").format(Number(obj.marketCapUsd))).slice(0, obj.marketCapUsd.length - 23) + 'b'}</td>
+                <td>{'$' + Number(obj.vwap24Hr).toFixed(2)}</td>
+                <td>{(new Intl.NumberFormat("de-DE").format(Number(obj.supply))).slice(0, obj.supply.length - 20) + 'm'}</td>
+                <td>{'$' + (new Intl.NumberFormat("de-DE").format(Number(obj.volumeUsd24Hr))).slice(0, obj.volumeUsd24Hr.length - 20) + 'm'}</td>
+                <td>{Number(obj.changePercent24Hr).toFixed(2) + '%'}</td>
                 <td>
-                  <button
+                  <button className={styles.button}
                     onClick={() => {
                       setModalWindow(true);
                       setModalData(obj);
                     }}
                   >
-                    Add to portfolio
+                    +
                   </button>
                 </td>
               </tr>
-            </tbody>
-          );
-        })}
+            );
+          })}
+        </tbody>
       </table>
       <Pagination paginate={setPaginate} pageNumbers={pageNumbers} />
     </div>

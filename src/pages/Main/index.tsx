@@ -2,27 +2,25 @@ import React, { Suspense } from "react";
 import { ListRender } from "./ListRender";
 import { IMain } from "../../types";
 import styles from "./Main.module.scss";
-import { useLoaderData, defer, Await } from "react-router-dom";
+import { useLoaderData, defer, Await, useLocation } from "react-router-dom";
+import { fetchData } from "../../api";
 
 const Main: React.FC = () => {
   const { data } = useLoaderData() as IMain;
+  const location = useLocation();
   return (
     <Suspense fallback={<h2>loading...</h2>}>
       <Await resolve={data}>
-        <div className={styles.container}>
-          <ListRender />
+        <div className={styles.main}>
+          <ListRender pageNum={Number(location.search[6])} />
         </div>
       </Await>
     </Suspense>
   );
 };
-async function getData() {
-  const response = await fetch("https://api.coincap.io/v2/assets");
-  return response.json();
-}
 export const mainLoader = async () => {
   return defer({
-    data: getData(),
+    data: fetchData(''),
   });
 };
 

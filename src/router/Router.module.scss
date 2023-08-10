@@ -1,11 +1,10 @@
+body {
+  background: linear-gradient(45deg, #f5f7fa, #c3cfe2);
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
 .container {
-  background-color: #4e598c;
   margin: 0 auto;
   width: 90%;
-  border-radius: 10px;
-  height: 90vh;
-  padding: 10px;
-}
-body {
-  background-color: #37306B;
 }
