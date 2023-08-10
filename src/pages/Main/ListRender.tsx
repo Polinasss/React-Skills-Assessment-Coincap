@@ -10,7 +10,8 @@ interface IListRender {
 }
 export const ListRender: React.FC<IListRender> = ({pageNum}) => {
   const { data } = useAsyncValue() as IMain;
-const location = useLocation()
+const location = useLocation();
+
 
   const [startPage, setStartPage] = useState(pageNum = Number(location.search.slice(6)));
   const [countOfPages, setCountOfPages] = useState(10);

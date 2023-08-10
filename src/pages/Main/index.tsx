@@ -2,15 +2,16 @@ import React, { Suspense, useEffect } from "react";
 import { ListRender } from "./ListRender";
 import { IMain } from "../../types";
 import styles from "./Main.module.scss";
-import { useLoaderData, defer, Await, useLocation, useNavigate } from "react-router-dom";
+import { useLoaderData, defer, Await, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { fetchData } from "../../api";
+import { Loading } from "../Loading";
 
 const Main: React.FC = () => {
   const { data } = useLoaderData() as IMain;
   const location = useLocation();
   
   return (
-    <Suspense fallback={<h2>loading...</h2>}>
+    <Suspense fallback={<Loading/>}>
       <Await resolve={data}>
         <div className={styles.main}>
           <ListRender pageNum={Number(location.search[6])} />
