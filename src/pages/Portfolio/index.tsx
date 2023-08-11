@@ -16,7 +16,7 @@ export const Portfolio: React.FC<IPortfolio> = ({
           {userCryptocurrency.map((obj: IProfileDataObject) => {
             return (
               <li>
-                {obj.name} = {obj.amount}
+                {obj.name} : {obj.amount}
               </li>
             );
           })}

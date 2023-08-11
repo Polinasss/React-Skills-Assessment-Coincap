@@ -57,7 +57,10 @@ export const ListRender: React.FC<IListRender> = ({ pageNum }) => {
               <tr key={obj.id}>
                 <td>{obj.rank}</td>
                 <td>
-                  <Link to={`/${obj.id}`}>{obj.name}</Link>
+                  <Link to={{
+                    pathname: `/${obj.id}`,
+                    search: `${obj.name}`,
+                  }}>{obj.name}</Link>
                 </td>
                 <td>{"$" + Number(obj.priceUsd).toFixed(2)}</td>
                 <td>
@@ -80,7 +83,7 @@ export const ListRender: React.FC<IListRender> = ({ pageNum }) => {
                       .slice(0, obj.volumeUsd24Hr.length - 20) +
                     "m"}
                 </td>
-                <td>{Number(obj.changePercent24Hr).toFixed(2) + "%"}</td>
+                <td style={Number(obj.changePercent24Hr) < 0 ? {color: 'red'} : {color: 'green'}}>{Number(obj.changePercent24Hr).toFixed(2) + "%"}</td>
                 <td>
                   <button
                     className={styles.button}
