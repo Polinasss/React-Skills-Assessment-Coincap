@@ -3,11 +3,7 @@ import styles from "./ModalWindow.module.scss";
 import { IModal } from "../../types";
 import { useDataContext } from "../../providers/DataContextProvider";
 
-export const Modal: React.FC<IModal> = ({
-  setModalWindow,
-  modalWindow,
-  data,
-}) => {
+export const Modal: React.FC<IModal> = ({ setModalWindow, modalWindow, data }) => {
   const [cryptocurrencyItem, setCryptocurrencyItem] = useState("");
   const { setUserCryptocurrency, userCryptocurrency } = useDataContext();
 
@@ -16,9 +12,11 @@ export const Modal: React.FC<IModal> = ({
     if (!cryptocurrencyItem) {
       return;
     }
-    setUserCryptocurrency([
-      ...userCryptocurrency,
-      { name: data.name, amount: String(cryptocurrencyItem) },
+    setUserCryptocurrency([ ...userCryptocurrency, {
+        name: data.name,
+        amount: String(cryptocurrencyItem),
+        price: data.priceUsd,
+      },
     ]);
     setCryptocurrencyItem("");
     setModalWindow(false);
@@ -27,17 +25,20 @@ export const Modal: React.FC<IModal> = ({
   return (
     <div className={modalWindow ? styles.visible : styles.hidden}>
       <div className={styles.modalBlock}>
-        <h2>Добавить в портфель криптовалюту {data.name}</h2>
+        <h2>Add cryptocurrency to portfolio - {data.name}</h2>
+        <p>Cryptocurrency cost = {"$" + Number(data.priceUsd).toFixed(2)} for 1</p>
         <form onSubmit={handleOnSubmit}>
           <input
+            className={styles.input}
             value={cryptocurrencyItem}
             onChange={(e) => setCryptocurrencyItem(e.target.value)}
             type="number"
             max={100}
+            placeholder="0.00"
             min={0.01}
             step={0.01}
           />
-          <button type="submit">Submit</button>
+          <button className={styles.submit} type="submit">Submit</button>
         </form>
         <button
           className={styles.closeBtn}

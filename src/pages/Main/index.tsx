@@ -3,7 +3,7 @@ import { ListRender } from "./ListRender";
 import { IMain } from "../../types";
 import styles from "./Main.module.scss";
 import { useLoaderData, defer, Await, useLocation } from "react-router-dom";
-import { fetchData } from "../../api";
+import { fetchCoincapApi } from "../../api";
 import { Loading } from "../Loading";
 
 const Main: React.FC = () => {
@@ -22,7 +22,7 @@ const Main: React.FC = () => {
 };
 export const mainLoader = async () => {
   return defer({
-    data: fetchData(""),
+    data: fetchCoincapApi(""),
   });
 };
 

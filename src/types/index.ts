@@ -50,6 +50,7 @@ export interface IPortfolio {
 export type IProfileDataObject = {
   name: string;
   amount: string;
+  price: string;
 };
 export interface IUserContextInterface {
   userCryptocurrency: IProfileDataObject[];

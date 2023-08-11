@@ -1,6 +1,6 @@
 import React, { lazy } from "react";
 import { RouterProvider, Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
-import { mainLoader, elementInfoLoader } from "../pages";
+import { mainLoader } from "../pages";
 import styles from "./Router.module.scss";
 import { Layout } from "../components";
 import DataContextProvider from "../providers/DataContextProvider";
@@ -15,7 +15,6 @@ const router = createBrowserRouter(
       <Route
         path="/:id"
         element={<LazyElementInfo />}
-        loader={elementInfoLoader}
       />
     </Route>
   )
@@ -23,7 +22,7 @@ const router = createBrowserRouter(
 
 const Navigation: React.FC = () => {
   return (
-    <div className={styles.container}>
+    <div className={styles.routerContainer}>
       <DataContextProvider>
         <RouterProvider router={router} />
       </DataContextProvider>
