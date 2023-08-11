@@ -33,7 +33,7 @@ export function Charts() {
 
   const oneD = (interval: string) => {
     setInterval(interval);
-    
+
     const arr: string[] = [];
     data.forEach((el) => arr.push(new Date(el.date).toDateString()));
     setChartLabels(arr);

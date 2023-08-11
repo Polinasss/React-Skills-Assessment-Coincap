@@ -1,17 +1,27 @@
 import React, { lazy } from "react";
-import { RouterProvider, Route, createBrowserRouter, createRoutesFromElements} from "react-router-dom";
+import {
+  RouterProvider,
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
 import { mainLoader, elementInfoLoader } from "../pages";
 import styles from "./Router.module.scss";
 import { Layout } from "../components";
+import DataContextProvider from "../providers/DataContextProvider";
 
-const LazyMain:React.FC = lazy(() => import(`../pages/Main/index`));
-const LazyElementInfo:React.FC = lazy(() => import(`../pages/ElementInfo`));
+const LazyMain: React.FC = lazy(() => import(`../pages/Main/index`));
+const LazyElementInfo: React.FC = lazy(() => import(`../pages/ElementInfo`));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route path="/" element={<LazyMain />} loader={mainLoader} />
-      <Route path="/:id" element={<LazyElementInfo />} loader={elementInfoLoader} />
+      <Route
+        path="/:id"
+        element={<LazyElementInfo />}
+        loader={elementInfoLoader}
+      />
     </Route>
   )
 );
@@ -19,7 +29,9 @@ const router = createBrowserRouter(
 const Navigation: React.FC = () => {
   return (
     <div className={styles.container}>
-      <RouterProvider router={router} />
+      <DataContextProvider>
+        <RouterProvider router={router} />
+      </DataContextProvider>
     </div>
   );
 };

@@ -1,3 +1,5 @@
+import { SetStateAction, Dispatch } from "react";
+
 export interface IData {
   id: string;
   rank: string;
@@ -38,4 +40,29 @@ export interface IModal {
   modalWindow: boolean;
   setModalWindow: (val: boolean) => void;
   data: IData;
+}
+
+export interface IPortfolio {
+  modalWindow: boolean;
+  setModalWindow: (val: boolean) => void;
+}
+
+export type IProfileDataObject = {
+  name: string;
+  amount: string;
+};
+export interface IUserContextInterface {
+  userCryptocurrency: IProfileDataObject[];
+  setUserCryptocurrency: Dispatch<SetStateAction<IProfileDataObject[]>>;
+}
+export interface IUserContextProps {
+  children: React.ReactNode;
+}
+export interface IContextValue {
+  userCryptocurrency: IProfileDataObject[];
+  setUserCryptocurrency: Dispatch<SetStateAction<IProfileDataObject[]>>;
+}
+
+export interface IListRender {
+  pageNum: number;
 }

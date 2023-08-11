@@ -5,7 +5,10 @@ import styles from "./Pagination.module.scss";
 import rightArrow from "../../assets/rightArrow.png";
 import leftArrow from "../../assets/leftArrow.png";
 
-export const Pagination: React.FC<IPagination> = ({ paginate, pageNumbers }) => {
+export const Pagination: React.FC<IPagination> = ({
+  paginate,
+  pageNumbers,
+}) => {
   const location = useLocation();
   const navigation = useNavigate();
   const currentLocation = Number(location.search.slice(6));

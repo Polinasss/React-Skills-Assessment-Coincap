@@ -15,6 +15,4 @@ export const startData = [
   },
 ];
 
-export const startDataCharts = [
-  {priceUsd: '', time: 0, date: ''}
-]
+export const startDataCharts = [{ priceUsd: "", time: 0, date: "" }];

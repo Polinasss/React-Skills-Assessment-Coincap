@@ -7,7 +7,7 @@ const ElementInfo: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [data, setData] = useState<any>();
-  
+
   useEffect(() => {
     if (id) {
       fetchData(id).then(setData);
