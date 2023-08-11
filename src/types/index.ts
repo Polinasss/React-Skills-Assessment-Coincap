@@ -47,6 +47,10 @@ export interface IPortfolio {
   setModalWindow: (val: boolean) => void;
 }
 
+export interface IListRender {
+  pageNum: number;
+}
+
 export type IProfileDataObject = {
   name: string;
   amount: string;
@@ -64,6 +68,20 @@ export interface IContextValue {
   setUserCryptocurrency: Dispatch<SetStateAction<IProfileDataObject[]>>;
 }
 
-export interface IListRender {
-  pageNum: number;
+
+
+
+export type ITotalCostDataObject = {
+  name: string[];
+};
+export interface ITotalCostContextInterface {
+  userTotalCost: number[];
+  setUserTotalCost: Dispatch<SetStateAction<number[]>>;
+}
+export interface ITotalCostContextProps {
+  children: React.ReactNode;
+}
+export interface IContextTotalCostValue {
+  userTotalCost: number[];
+  setUserTotalCost: Dispatch<SetStateAction<number[]>>;
 }
