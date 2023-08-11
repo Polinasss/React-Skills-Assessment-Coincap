@@ -1,10 +1,5 @@
 import React, { lazy } from "react";
-import {
-  RouterProvider,
-  Route,
-  createBrowserRouter,
-  createRoutesFromElements,
-} from "react-router-dom";
+import { RouterProvider, Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import { mainLoader, elementInfoLoader } from "../pages";
 import styles from "./Router.module.scss";
 import { Layout } from "../components";
