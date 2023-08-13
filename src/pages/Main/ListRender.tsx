@@ -32,7 +32,7 @@ export const ListRender: React.FC<IListRender> = ({ pageNum }) => {
             <th>VWAP(24Hr)</th>
             <th>Supply</th>
             <th>Volume</th>
-            <th>Change(24Hr)</th>
+            <th>{window.screen.width < 500 ? '24Hr' : 'Change(24Hr)'}</th>
             <th></th>
           </tr>
         </thead>

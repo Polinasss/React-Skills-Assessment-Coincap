@@ -54,3 +54,22 @@
 .img {
   width: 20px;
 }
+.pageIncrementBtn {
+  margin-left: 4.5%;
+  cursor: pointer;
+}
+.pageDecrementBtn {
+  margin-right: 4.5%;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1050px) {
+  article {
+    padding: 1rem 3rem;
+  }
+}
+@media screen and (max-width: 355px) {
+  .pagination {
+    width: 100%;
+  }
+}

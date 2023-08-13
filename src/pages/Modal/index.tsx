@@ -25,7 +25,7 @@ export const Modal: React.FC<IModal> = ({ setModalWindow, modalWindow, data }) =
   return (
     <div className={modalWindow ? styles.visible : styles.hidden}>
       <div className={styles.modalBlock}>
-        <h2>Add cryptocurrency to portfolio - {data.name}</h2>
+        <h2 className={styles.title}>Add cryptocurrency to portfolio - {data.name}</h2>
         <p>Cryptocurrency cost = {"$" + Number(data.priceUsd).toFixed(2)} for 1</p>
         <form onSubmit={handleOnSubmit}>
           <input

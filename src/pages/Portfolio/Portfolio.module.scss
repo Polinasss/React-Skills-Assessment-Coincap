@@ -21,10 +21,18 @@
   position: relative;
   padding: 20px;
 }
+.title {
+  margin-top: 60px;
+}
 .closeBtn {
   position: absolute;
   top: 5%;
   right: 5%;
+  background-color: #4e598c;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
 }
 .img {
   width: 20px;
@@ -47,6 +55,21 @@
     td, th {
       padding: 5px 0;
       width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .table {
+    thead {
+      tr > th:nth-child(2) {
+        display: none;
+      }
+    }
+    tbody {
+      tr > td:nth-child(2) {
+        display: none;
+      }
     }
   }
 }

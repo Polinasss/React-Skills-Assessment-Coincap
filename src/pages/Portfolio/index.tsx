@@ -15,7 +15,7 @@ export const Portfolio: React.FC<IPortfolio> = ({setModalWindow, modalWindow}) =
   return (
     <div className={modalWindow ? styles.visible : styles.hidden}>
       <div className={styles.modalBlock}>
-        <h2>Total cost of user portfolio = {getTotalCost(userCryptocurrency)}</h2>
+        <h2 className={styles.title}>Total cost of user portfolio = {getTotalCost(userCryptocurrency)}</h2>
         <table className={styles.table}>
           <thead>
             <tr>
