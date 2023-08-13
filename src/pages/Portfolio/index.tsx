@@ -3,10 +3,13 @@ import { useDataContext } from "../../providers/DataContextProvider";
 import { IPortfolio, IProfileDataObject } from "../../types";
 import styles from "./Portfolio.module.scss";
 import trash from "../../assets/trash.png"
-import { getTotalCost } from "../../components/portfolio";
+import { useTotalCostContext } from "../../providers/PriceContextProvider";
 
 export const Portfolio: React.FC<IPortfolio> = ({setModalWindow, modalWindow}) => {
   const { userCryptocurrency, setUserCryptocurrency } = useDataContext();
+  const {getTotalCost} = useTotalCostContext();
+  console.log(`${getTotalCost(userCryptocurrency)}`)
+
 
   const deleteItem = (itemName: string) => {
     setUserCryptocurrency(userCryptocurrency.filter(obj => obj.name !== itemName))

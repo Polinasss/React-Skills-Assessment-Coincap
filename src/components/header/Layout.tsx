@@ -4,14 +4,13 @@ import { useEffect, useState } from "react";
 import { fetchCoincapApi } from "../../api";
 import { IMain } from "../../types";
 import { Portfolio } from "../../pages/Portfolio";
-import { getTotalCost } from "../portfolio";
 import { useDataContext } from "../../providers/DataContextProvider";
-//import { useTotalCostContext } from "../../providers/PriceContextProvider";
+import { useTotalCostContext } from "../../providers/PriceContextProvider";
 
 export const Layout: React.FC = () => {
   const navigate = useNavigate();
-  //const {userTotalCost, setUserTotalCost} = useTotalCostContext();
   const {userCryptocurrency} = useDataContext();
+  const {getTotalCost, setUserTotalCost} = useTotalCostContext()
 
   const [data, setData] = useState<IMain>();
   const [modalWindow, setModalWindow] = useState<boolean>(false);

@@ -71,17 +71,17 @@ export interface IContextValue {
 
 
 
-export type ITotalCostDataObject = {
-  name: string[];
-};
+
 export interface ITotalCostContextInterface {
-  userTotalCost: number[];
-  setUserTotalCost: Dispatch<SetStateAction<number[]>>;
+  userTotalCost: string;
+  setUserTotalCost: Dispatch<SetStateAction<string>>;
+  getTotalCost: (userCryptocurrency: IProfileDataObject[]) => string;
 }
 export interface ITotalCostContextProps {
   children: React.ReactNode;
 }
 export interface IContextTotalCostValue {
-  userTotalCost: number[];
-  setUserTotalCost: Dispatch<SetStateAction<number[]>>;
+  userTotalCost: string;
+  setUserTotalCost: Dispatch<SetStateAction<string>>;
+  getTotalCost: (userCryptocurrency: IProfileDataObject[]) => string;
 }

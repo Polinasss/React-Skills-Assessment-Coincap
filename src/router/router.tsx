@@ -4,6 +4,7 @@ import { mainLoader } from "../pages";
 import styles from "./Router.module.scss";
 import { Layout, ErrorPage } from "../components";
 import DataContextProvider from "../providers/DataContextProvider";
+import TotalCostContext from "../providers/PriceContextProvider";
 
 const LazyMain: React.FC = lazy(() => import(`../pages/Main/index`));
 const LazyElementInfo: React.FC = lazy(() => import(`../pages/ElementInfo`));
@@ -24,7 +25,9 @@ const Navigation: React.FC = () => {
   return (
     <div className={styles.routerContainer}>
       <DataContextProvider>
+        <TotalCostContext>
         <RouterProvider router={router} />
+        </TotalCostContext>
       </DataContextProvider>
     </div>
   );
