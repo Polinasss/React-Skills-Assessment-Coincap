@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { fetchCoincapApi } from "../../api";
 import { startDataCharts } from "../../data";
 import styles from "./Charts.module.scss";
-import { getFormatHours, getHightPrice } from '../../components/charts'
+import { getFormatHours, getHightPrice } from '../../utils/charts'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
 

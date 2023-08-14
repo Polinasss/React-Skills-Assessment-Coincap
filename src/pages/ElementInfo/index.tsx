@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { Charts } from "../Charts";
+import { Charts } from "../../components/charts";
 import { fetchCoincapApi } from "../../api";
 import styles from "./ElementInfo.module.scss";
 import { Modal } from "../Modal";

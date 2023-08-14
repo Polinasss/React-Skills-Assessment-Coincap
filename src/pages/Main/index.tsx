@@ -1,10 +1,10 @@
 import React, { Suspense } from "react";
-import { ListRender } from "./ListRender";
+import { ListRender } from "../../components/main/ListRender";
 import { IMain } from "../../types";
 import styles from "./Main.module.scss";
 import { useLoaderData, defer, Await, useLocation } from "react-router-dom";
 import { fetchCoincapApi } from "../../api";
-import { Loading } from "../Loading";
+import { Loading } from "../../components/loading";
 
 const Main: React.FC = () => {
   const { data } = useLoaderData() as IMain;

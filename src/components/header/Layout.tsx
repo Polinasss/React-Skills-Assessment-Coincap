@@ -6,17 +6,18 @@ import { IMain } from "../../types";
 import { Portfolio } from "../../pages/Portfolio";
 import { useDataContext } from "../../providers/DataContextProvider";
 import { useTotalCostContext } from "../../providers/PriceContextProvider";
+import { n } from '../../pages/Modal/index'
 
 export const Layout: React.FC = () => {
   const navigate = useNavigate();
   const {userCryptocurrency} = useDataContext();
-  const {getTotalCost, setUserTotalCost} = useTotalCostContext()
+  const {userTotalCost, getTotalCost, setUserTotalCost} = useTotalCostContext()
 
   const [data, setData] = useState<IMain>();
   const [modalWindow, setModalWindow] = useState<boolean>(false);
 
   useEffect(() => {
-    fetchCoincapApi("").then(setData);
+    fetchCoincapApi("").then(setData); 
   }, []);
   useEffect(() => {
     navigate("/?page=1");
@@ -43,7 +44,7 @@ export const Layout: React.FC = () => {
         </ul>
         <div className={styles.portfolio_container}>
           <button onClick={() => setModalWindow(true)} className={styles.portfolio}>Portfolio</button>
-          <p className={styles.portfolio_info}>{getTotalCost(userCryptocurrency)}</p>
+          <p id="portfolioInfo" className={styles.portfolio_info}>{n == 1 ? getTotalCost(userCryptocurrency) : userTotalCost}</p>
         </div>
       </header>
       <Outlet />

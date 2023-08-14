@@ -3,6 +3,8 @@ import styles from "./ModalWindow.module.scss";
 import { IModal } from "../../types";
 import { useDataContext } from "../../providers/DataContextProvider";
 
+export let n = 0;
+
 export const Modal: React.FC<IModal> = ({ setModalWindow, modalWindow, data }) => {
   const [cryptocurrencyItem, setCryptocurrencyItem] = useState("");
   const { setUserCryptocurrency, userCryptocurrency } = useDataContext();
@@ -38,7 +40,7 @@ export const Modal: React.FC<IModal> = ({ setModalWindow, modalWindow, data }) =
             min={0.01}
             step={0.01}
           />
-          <button className={styles.submit} type="submit">Submit</button>
+          <button onClick={() => {n = n+1}} className={styles.submit} type="submit">Submit</button>
         </form>
         <button
           className={styles.closeBtn}

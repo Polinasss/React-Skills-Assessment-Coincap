@@ -18,7 +18,7 @@ const TotalCostContext = ({ children }: ITotalCostContextProps) => {
     localStorage.setItem("userTotalCostStore", JSON.stringify(userTotalCost));
   }, [userTotalCost]);
 
-  
+  console.log(userTotalCost);
 
 const getTotalCost = (userCryptocurrency: IProfileDataObject[] = []) => {
   const arr: number[] = [];
@@ -30,7 +30,8 @@ const getTotalCost = (userCryptocurrency: IProfileDataObject[] = []) => {
     const totalCost = Number(arr.slice(1).reduce((sum, el) => sum + el, 0)).toFixed(2);
     const previousValue = (Number(arr.slice(1).reduce((sum, el) => sum + el, 0)) - arr[arr.length - 1]).toFixed(2);
     const res = `${previousValue}$ + ${arr[arr.length-1].toFixed(2)}$ = ${totalCost}$ (${(arr[arr.length-1] / Number(totalCost) * 100).toFixed(2)}%)`
-    return res
+    setUserTotalCost(totalCost)
+    return res;
   } else {
     return "";
   }
