@@ -1,20 +1,20 @@
-import React, { Suspense } from "react";
-import { ListRender } from "../../components/main/ListRender";
-import { IMain } from "../../types";
-import styles from "./Main.module.scss";
+import React, { Suspense, useMemo } from "react";
 import { useLoaderData, defer, Await, useLocation } from "react-router-dom";
+import styles from "./Main.module.scss";
+import { ListRender, Loading } from "../../components";
 import { fetchCoincapApi } from "../../api";
-import { Loading } from "../../components/loading";
+import { IMain } from "../../types";
 
 const Main: React.FC = () => {
   const { data } = useLoaderData() as IMain;
   const location = useLocation();
+  const searchParams = useMemo(() => new URLSearchParams(location.search), [location.search]);
 
   return (
     <Suspense fallback={<Loading />}>
       <Await resolve={data}>
         <div className={styles.main}>
-          <ListRender pageNum={Number(location.search[6])} />
+          <ListRender pageNum={Number(searchParams.get('page'))} />
         </div>
       </Await>
     </Suspense>

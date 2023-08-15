@@ -7,46 +7,21 @@ import leftArrow from "../../assets/leftArrow.png";
 import { RenderingPagination } from ".";
 import { useMemo } from "react";
 
-export const Pagination: React.FC<IPagination> = ({
-  paginate,
-  pageNumbers,
-}) => {
+export const Pagination: React.FC<IPagination> = ({paginate,pageNumbers}) => {
   const location = useLocation();
   const navigation = useNavigate();
-  const searchParams = useMemo(
-    () => console.log(new URLSearchParams(location.search)),
-    [location.search]
-  );
 
-  const [pageNumberLimit, setPageNumberLimit] = useState(
-    window.screen.width < 550 ? 3 : 5
-  );
-  const [maxPageLimit, setMaxPageLimit] = useState(
-    window.screen.width < 550 ? 3 : 5
-  );
+  const [pageNumberLimit, setPageNumberLimit] = useState(window.screen.width < 550 ? 3 : 5);
+  const [maxPageLimit, setMaxPageLimit] = useState(window.screen.width < 550 ? 3 : 5);
   const [minPageLimit, setMinPageLimit] = useState(0);
 
   let pageIncrementBtn = null;
   if (pageNumbers.length > maxPageLimit) {
-    pageIncrementBtn = (
-      <p
-        className={styles.pageIncrementBtn}
-        onClick={() => goNext(currentLocation)}
-      >
-        ...
-      </p>
-    );
+    pageIncrementBtn = (<p className={styles.pageIncrementBtn} onClick={() => goNext(currentLocation)}>...</p>);
   }
   let pageDecrementBtn = null;
   if (minPageLimit >= 1) {
-    pageDecrementBtn = (
-      <p
-        className={styles.pageDecrementBtn}
-        onClick={() => goPrevious(currentLocation)}
-      >
-        ...
-      </p>
-    );
+    pageDecrementBtn = (<p className={styles.pageDecrementBtn} onClick={() => goPrevious(currentLocation)}>...</p>);
   }
 
   const currentLocation = Number(location.search.slice(6));
@@ -61,6 +36,7 @@ export const Pagination: React.FC<IPagination> = ({
       }
     }
   };
+
   const goNext = (currentLocation: number) => {
     if (currentLocation !== 10) {
       paginate(currentLocation + 1);

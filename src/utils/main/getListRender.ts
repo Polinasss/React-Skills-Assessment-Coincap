@@ -1,10 +1,6 @@
 import { IData } from "../../types";
 
-export const getListOfItems = (
-  startPage: number,
-  countOfPages: number,
-  data: IData[]
-) => {
+export const getListOfItems = ( startPage: number, countOfPages: number, data: IData[] ) => {
   const lastIndex = startPage * countOfPages;
   const firstIndex = lastIndex - countOfPages;
   const currentIndexes = data.slice(firstIndex, lastIndex);

@@ -23,6 +23,7 @@ export interface IPagination {
   pageNumbers: number[];
   paginate: (num: number) => void;
 }
+
 export interface IInfo {
   data: IData;
 }
@@ -63,25 +64,13 @@ export interface IUserContextInterface {
 export interface IUserContextProps {
   children: React.ReactNode;
 }
-export interface IContextValue {
-  userCryptocurrency: IProfileDataObject[];
-  setUserCryptocurrency: Dispatch<SetStateAction<IProfileDataObject[]>>;
-}
-
-
-
-
 
 export interface ITotalCostContextInterface {
-  userTotalCost: string;
-  setUserTotalCost: Dispatch<SetStateAction<string>>;
-  getTotalCost: (userCryptocurrency: IProfileDataObject[]) => string;
+  setNumberOfRendering: Dispatch<SetStateAction<number>>;
+  getPortfolioPrice: (userCryptocurrency: IProfileDataObject[]) => string;
+  setIsDeleteOrPlus: Dispatch<SetStateAction<boolean>>;
+  setDeletedObj: Dispatch<SetStateAction<IProfileDataObject>>;
 }
 export interface ITotalCostContextProps {
   children: React.ReactNode;
-}
-export interface IContextTotalCostValue {
-  userTotalCost: string;
-  setUserTotalCost: Dispatch<SetStateAction<string>>;
-  getTotalCost: (userCryptocurrency: IProfileDataObject[]) => string;
 }

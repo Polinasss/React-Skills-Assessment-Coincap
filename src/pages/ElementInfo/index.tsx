@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { Charts } from "../../components/charts";
-import { fetchCoincapApi } from "../../api";
 import styles from "./ElementInfo.module.scss";
+import { Charts } from "../../components";
+import { fetchCoincapApi } from "../../api";
 import { Modal } from "../Modal";
 import { IData } from "../../types";
 import { startData } from "../../data";
@@ -27,8 +27,7 @@ const ElementInfo: React.FC = () => {
   return (
     data && (
       <div className={styles.container}>
-        <Modal modalWindow={modalWindow} setModalWindow={setModal} data={location.state}
-        />
+        <Modal modalWindow={modalWindow} setModalWindow={setModal} data={location.state} />
         <div className={styles.elementInfoBlock}>
           <div className={styles.title}>
             <h3>{data.data.name}</h3>

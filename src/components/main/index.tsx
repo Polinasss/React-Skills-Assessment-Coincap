@@ -2,7 +2,7 @@ import { IData, IMain, IListRender } from "../../types";
 import { Link, useAsyncValue, useLocation } from "react-router-dom";
 import styles from "../../pages/Main/Main.module.scss";
 import React, { useState } from "react";
-import { Pagination } from "..";
+import { Pagination } from "../pagination/Pagination";
 import { Modal } from "../../pages";
 import { startData } from "../../data";
 import { getListOfItems } from "../../utils/main/getListRender";

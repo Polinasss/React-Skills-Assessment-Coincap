@@ -1,12 +1,9 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { IProfileDataObject, IUserContextInterface, IUserContextProps, IContextValue } from "../types";
+import { IProfileDataObject, IUserContextInterface, IUserContextProps } from "../types";
 
 const DataContext = createContext<IUserContextInterface>({} as IUserContextInterface);
 
-const DataContextProvider = ({ children }: IUserContextProps) => {
-  const [userCryptocurrency, setUserCryptocurrency] = useState<
-    IProfileDataObject[]
-  >([{ name: "", amount: "", price: ""}]);
+const DataContextProvider = ({ children }: IUserContextProps) => { const [userCryptocurrency, setUserCryptocurrency] = useState<IProfileDataObject[]>([{ name: "", amount: "", price: ""}]);
 
   useEffect(() => {
     const userCryptocurrencyStore = JSON.parse(localStorage.getItem("userCryptocurrencyStore") || "");
@@ -14,12 +11,11 @@ const DataContextProvider = ({ children }: IUserContextProps) => {
       setUserCryptocurrency(userCryptocurrencyStore);
     }
   }, []);
-
   useEffect(() => {
     localStorage.setItem("userCryptocurrencyStore", JSON.stringify(userCryptocurrency));
   }, [userCryptocurrency]);
 
-  const contextValue: IContextValue = {
+  const contextValue: IUserContextInterface = {
     userCryptocurrency,
     setUserCryptocurrency,
   };

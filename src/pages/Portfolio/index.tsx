@@ -1,24 +1,24 @@
 import React from "react";
 import { useDataContext } from "../../providers/DataContextProvider";
 import { IPortfolio, IProfileDataObject } from "../../types";
-import styles from "./Portfolio.module.scss";
-import trash from "../../assets/trash.png"
+import trash from "../../assets/trash.png";
 import { useTotalCostContext } from "../../providers/PriceContextProvider";
+import styles from "./Portfolio.module.scss";
 
-export const Portfolio: React.FC<IPortfolio> = ({setModalWindow, modalWindow}) => {
+export const Portfolio: React.FC<IPortfolio> = ({ setModalWindow, modalWindow }) => {
   const { userCryptocurrency, setUserCryptocurrency } = useDataContext();
-  const {getTotalCost} = useTotalCostContext();
-  console.log(`${getTotalCost(userCryptocurrency)}`)
-
-
-  const deleteItem = (itemName: string) => {
-    setUserCryptocurrency(userCryptocurrency.filter(obj => obj.name !== itemName))
+  const { setIsDeleteOrPlus, setDeletedObj, getPortfolioPrice } = useTotalCostContext();
+  
+  const deleteItem = (delObj: IProfileDataObject) => {
+    setUserCryptocurrency( userCryptocurrency.filter((obj) => obj.name !== delObj.name));
+    setIsDeleteOrPlus(true);
+    setDeletedObj(delObj);
   };
 
   return (
     <div className={modalWindow ? styles.visible : styles.hidden}>
       <div className={styles.modalBlock}>
-        <h2 className={styles.title}>Total cost of user portfolio = {getTotalCost(userCryptocurrency)}</h2>
+        <h2 className={styles.title}> Total cost of user portfolio = {getPortfolioPrice(userCryptocurrency)} </h2>
         <table className={styles.table}>
           <thead>
             <tr>
@@ -29,16 +29,20 @@ export const Portfolio: React.FC<IPortfolio> = ({setModalWindow, modalWindow}) =
             </tr>
           </thead>
           <tbody>
-          {userCryptocurrency.slice(1, userCryptocurrency.length).map((obj: IProfileDataObject) => {
-            return (
-              <tr>
-                <td>{obj.name}</td>
-                <td>{obj.amount}</td>
-                <td>${(Number(obj.price) * Number(obj.amount)).toFixed(2)}</td>
-                <td><button onClick={() => deleteItem(obj.name)} className={styles.trash}><img className={styles.img} src={trash} alt="trash" /></button></td>
-              </tr>
-            )
-          })}
+            {userCryptocurrency.slice(1, userCryptocurrency.length).map((obj: IProfileDataObject) => {
+                return (
+                  <tr>
+                    <td>{obj.name}</td>
+                    <td>{obj.amount}</td>
+                    <td>${(Number(obj.price) * Number(obj.amount)).toFixed(2)}</td>
+                    <td>
+                      <button onClick={() => deleteItem(obj)} className={styles.trash}>
+                        <img className={styles.img} src={trash} alt="trash" />
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
         <button className={styles.closeBtn} onClick={() => setModalWindow(false)}>Close</button>

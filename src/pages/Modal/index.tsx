@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import styles from "./ModalWindow.module.scss";
 import { IModal } from "../../types";
 import { useDataContext } from "../../providers/DataContextProvider";
-
-export let n = 0;
+import { useTotalCostContext } from "../../providers/PriceContextProvider";
+import styles from "./ModalWindow.module.scss";
 
 export const Modal: React.FC<IModal> = ({ setModalWindow, modalWindow, data }) => {
   const [cryptocurrencyItem, setCryptocurrencyItem] = useState("");
   const { setUserCryptocurrency, userCryptocurrency } = useDataContext();
-
+  const { setNumberOfRendering, setIsDeleteOrPlus } = useTotalCostContext();
+  
   const handleOnSubmit = (e: any) => {
     e.preventDefault();
     if (!cryptocurrencyItem) {
@@ -21,6 +21,8 @@ export const Modal: React.FC<IModal> = ({ setModalWindow, modalWindow, data }) =
       },
     ]);
     setCryptocurrencyItem("");
+    setNumberOfRendering(prev => prev = prev + 1);
+    setIsDeleteOrPlus(false);
     setModalWindow(false);
   };
 
@@ -40,14 +42,9 @@ export const Modal: React.FC<IModal> = ({ setModalWindow, modalWindow, data }) =
             min={0.01}
             step={0.01}
           />
-          <button onClick={() => {n = n+1}} className={styles.submit} type="submit">Submit</button>
+          <button className={styles.submit} type="submit">Submit</button>
         </form>
-        <button
-          className={styles.closeBtn}
-          onClick={() => setModalWindow(false)}
-        >
-          Close
-        </button>
+        <button className={styles.closeBtn} onClick={() => setModalWindow(false)}>Close</button>
       </div>
     </div>
   );
