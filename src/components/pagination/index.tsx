@@ -13,6 +13,7 @@ export const RenderingPagination:React.FC<IRenderingPagination> = ( {num, locati
     <>
       <li key={num}>
         <Link
+          key={crypto.randomUUID()}
           className={num === location ? styles.active : styles.item}
           to={`/?page=${num}`}
           onClick={() => paginate(num)}

@@ -31,13 +31,13 @@ export const Portfolio: React.FC<IPortfolio> = ({ setModalWindow, modalWindow })
           <tbody>
             {userCryptocurrency.slice(1, userCryptocurrency.length).map((obj: IProfileDataObject) => {
                 return (
-                  <tr>
-                    <td>{obj.name}</td>
-                    <td>{obj.amount}</td>
-                    <td>${(Number(obj.price) * Number(obj.amount)).toFixed(2)}</td>
-                    <td>
-                      <button onClick={() => deleteItem(obj)} className={styles.trash}>
-                        <img className={styles.img} src={trash} alt="trash" />
+                  <tr key={crypto.randomUUID()}>
+                    <td key={crypto.randomUUID()}>{obj.name}</td>
+                    <td key={crypto.randomUUID()}>{obj.amount}</td>
+                    <td key={crypto.randomUUID()}>${(Number(obj.price) * Number(obj.amount)).toFixed(2)}</td>
+                    <td key={crypto.randomUUID()}>
+                      <button key={crypto.randomUUID()} onClick={() => deleteItem(obj)} className={styles.trash}>
+                        <img key={crypto.randomUUID()} className={styles.img} src={trash} alt="trash" />
                       </button>
                     </td>
                   </tr>

@@ -5,7 +5,6 @@ import styles from "./Pagination.module.scss";
 import rightArrow from "../../assets/rightArrow.png";
 import leftArrow from "../../assets/leftArrow.png";
 import { RenderingPagination } from ".";
-import { useMemo } from "react";
 
 export const Pagination: React.FC<IPagination> = ({paginate,pageNumbers}) => {
   const location = useLocation();
@@ -50,10 +49,7 @@ export const Pagination: React.FC<IPagination> = ({paginate,pageNumbers}) => {
 
   return (
     <div className={styles.pagination}>
-      <button
-        onClick={() => goPrevious(currentLocation)}
-        className={styles.button}
-      >
+      <button onClick={() => goPrevious(currentLocation)} className={styles.button}>
         <img className={styles.img} src={leftArrow} alt="left arrow" />
       </button>
       {window.screen.width < 1050 ? pageDecrementBtn : null}
@@ -63,6 +59,7 @@ export const Pagination: React.FC<IPagination> = ({paginate,pageNumbers}) => {
             if (num < maxPageLimit + 1 && num > minPageLimit) {
               return (
                 <RenderingPagination
+                  key={crypto.randomUUID()}
                   num={num}
                   location={Number(location.search.slice(6))}
                   paginate={paginate}
@@ -74,6 +71,7 @@ export const Pagination: React.FC<IPagination> = ({paginate,pageNumbers}) => {
           } else {
             return (
               <RenderingPagination
+                key={crypto.randomUUID()}
                 num={num}
                 location={Number(location.search.slice(6))}
                 paginate={paginate}

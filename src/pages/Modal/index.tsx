@@ -20,6 +20,7 @@ export const Modal: React.FC<IModal> = ({ setModalWindow, modalWindow, data }) =
         price: data.priceUsd,
       },
     ]);
+    console.log(userCryptocurrency)
     setCryptocurrencyItem("");
     setNumberOfRendering(prev => prev = prev + 1);
     setIsDeleteOrPlus(false);
