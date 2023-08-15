@@ -10,17 +10,15 @@ const TotalCostContext = ({ children }: ITotalCostContextProps) => {
   const [deleteObj, setDeletedObj] = useState<IProfileDataObject>({name: '', amount: '', price: ''});
 
   useEffect(() => {
-    const userTotalCostStore = JSON.parse(localStorage.getItem("userTotalCostStore") || "");
-    if (userTotalCostStore) {
+    const totalCostStore = localStorage.getItem("userTotalCostStore");
+    if (totalCostStore) {
+      const userTotalCostStore = JSON.parse(totalCostStore)
       setUserTotalCost(userTotalCostStore);
     }
-  }, []);
+  }, []); 
+
   useEffect(() => {
-    try {
       localStorage.setItem("userTotalCostStore", JSON.stringify(userTotalCost));
-    } catch (error) {
-      console.log(error)
-    }
   }, [userTotalCost]);
 
   const delateTotalCost = (userCryptocurrency: IProfileDataObject[] = [], delatedObj:IProfileDataObject[] = []) => {

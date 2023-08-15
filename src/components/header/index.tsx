@@ -22,6 +22,7 @@ export const Layout: React.FC = () => {
   useEffect(() => {
     navigate("/?page=1");
   }, []);
+
   useEffect(() => {
     setGetPrice(getPortfolioPrice(userCryptocurrency))
   }, [userCryptocurrency])
