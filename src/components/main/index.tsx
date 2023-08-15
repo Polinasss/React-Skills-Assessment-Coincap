@@ -2,10 +2,10 @@ import { IData, IMain, IListRender } from "../../types";
 import { Link, useAsyncValue, useLocation } from "react-router-dom";
 import styles from "../../pages/Main/Main.module.scss";
 import React, { useState } from "react";
-import { Pagination } from "../Pagination/Pagination";
+import { Pagination } from "../pagination/Pagination";
 import { Modal } from "../../pages";
 import { startData } from "../../constants";
-import { getListOfItems } from "../../utils/main/getListRender";
+import { getListOfItems } from "../../utils/main";
 
 export const ListRender: React.FC<IListRender> = ({ pageNum }) => {
   const { data } = useAsyncValue() as IMain;
