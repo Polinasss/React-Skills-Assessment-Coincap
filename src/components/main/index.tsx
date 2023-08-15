@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { Pagination } from "../Pagination/Pagination";
 import { Modal } from "../../pages";
 import { startData } from "../../constants";
-import { getListOfItems } from "../../utils/main/getListRender";
+import { getListOfItems } from "../../utils";
 
 export const ListRender: React.FC<IListRender> = ({ pageNum }) => {
   const { data } = useAsyncValue() as IMain;

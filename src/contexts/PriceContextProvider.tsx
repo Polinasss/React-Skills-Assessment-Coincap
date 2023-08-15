@@ -36,11 +36,12 @@ const TotalCostContext = ({ children }: ITotalCostContextProps) => {
     if (numberOfRendering >= 1) {
       if (userCryptocurrency.length !== 1) {
         const arr: number[] = [];
-      userCryptocurrency.forEach((obj) => arr.push(Number(obj.price) * Number(obj.amount)));
-      const totalCost = arr.reduce((sum, el) => sum + el, 0);
-      const previousValue = arr.reduce((sum, el) => sum + el, 0) - arr[arr.length - 1];
-      setUserTotalCost(totalCost.toFixed(2));
-      return `${previousValue.toFixed(2)}$ + ${arr[arr.length - 1].toFixed(2)}$ = ${totalCost.toFixed(2)}$ (+${(Number(arr[arr.length - 1].toFixed(2)) / Number(previousValue.toFixed(2)) * 100).toFixed(2)}%)`
+        userCryptocurrency.forEach((obj) => arr.push(Number(obj.price) * Number(obj.amount)));
+        const totalCost = arr.reduce((sum, el) => sum + el, 0);
+        const previousValue = arr.reduce((sum, el) => sum + el, 0) - arr[arr.length - 1];
+        const percent = (Number(arr[arr.length - 1]) / Number(previousValue) * 100).toFixed(2) === "Infinity" ? '100' : (Number(arr[arr.length - 1]) / Number(previousValue) * 100).toFixed(2)
+        setUserTotalCost(totalCost.toFixed(2));
+        return `${previousValue.toFixed(2)}$ + ${arr[arr.length - 1].toFixed(2)}$ = ${totalCost.toFixed(2)}$ (+${percent}%)`
       } else {
         return ''
       }

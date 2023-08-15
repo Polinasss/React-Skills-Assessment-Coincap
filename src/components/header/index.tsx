@@ -2,7 +2,7 @@ import styles from "./Header.module.scss";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchCoincapApi } from "../../services/api";
-import { IMain, IProfileDataObject } from "../../types";
+import { IMain } from "../../types";
 import { Portfolio } from "../../pages/Portfolio";
 import { useDataContext } from "../../contexts/DataContextProvider";
 import { useTotalCostContext } from "../../contexts/PriceContextProvider";
