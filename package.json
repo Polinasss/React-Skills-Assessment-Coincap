@@ -1,6 +1,7 @@
 {
   "name": "react-assessment-coincap",
   "version": "0.1.0",
+  "homepage": "https://Polinasss.github.io/React-Skills-Assessment-Coincap/tree/dev",
   "private": true,
   "dependencies": {
     "chart.js": "^4.3.3",
@@ -12,6 +13,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -43,6 +46,7 @@
     "@types/node": "^16.18.39",
     "@types/react": "^18.2.19",
     "@types/react-dom": "^18.2.7",
+    "gh-pages": "^6.0.0",
     "sass": "^1.64.2",
     "sass-loader": "^13.3.2",
     "typescript": "^4.9.5",
