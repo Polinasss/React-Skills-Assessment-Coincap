@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styles from "./ElementInfo.module.scss";
 import { Charts } from "../../components";
-import { fetchCoincapApi } from "../../api";
+import { fetchCoincapApi } from "../../services/api";
 import { Modal } from "../Modal";
 import { IData } from "../../types";
-import { startData } from "../../data";
+import { startData } from "../../constants";
 
 const ElementInfo: React.FC = () => {
   const location = useLocation();

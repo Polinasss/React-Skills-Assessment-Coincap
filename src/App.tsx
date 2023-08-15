@@ -1,4 +1,4 @@
-import Navigation from "./router/router";
+import Navigation from "./routes/router";
 
 function App() {
   return (

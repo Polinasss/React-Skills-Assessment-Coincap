@@ -3,8 +3,8 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 import { Line } from "react-chartjs-2";
 import { ICharts } from "../../types";
 import { useParams } from "react-router-dom";
-import { fetchCoincapApi } from "../../api";
-import { startDataCharts } from "../../data";
+import { fetchCoincapApi } from "../../services/api";
+import { startDataCharts } from "../../constants";
 import styles from "./Charts.module.scss";
 import { getFormatHours, getHightPrice } from '../../utils/charts'
 

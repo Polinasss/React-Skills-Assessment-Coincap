@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IModal } from "../../types";
-import { useDataContext } from "../../providers/DataContextProvider";
-import { useTotalCostContext } from "../../providers/PriceContextProvider";
+import { useDataContext } from "../../contexts/DataContextProvider";
+import { useTotalCostContext } from "../../contexts/PriceContextProvider";
 import styles from "./ModalWindow.module.scss";
 
 export const Modal: React.FC<IModal> = ({ setModalWindow, modalWindow, data }) => {
@@ -20,7 +20,6 @@ export const Modal: React.FC<IModal> = ({ setModalWindow, modalWindow, data }) =
         price: data.priceUsd,
       },
     ]);
-    console.log(userCryptocurrency)
     setCryptocurrencyItem("");
     setNumberOfRendering(prev => prev = prev + 1);
     setIsDeleteOrPlus(false);

@@ -1,11 +1,11 @@
 import styles from "./Header.module.scss";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchCoincapApi } from "../../api";
+import { fetchCoincapApi } from "../../services/api";
 import { IMain } from "../../types";
 import { Portfolio } from "../../pages/Portfolio";
-import { useDataContext } from "../../providers/DataContextProvider";
-import { useTotalCostContext } from "../../providers/PriceContextProvider";
+import { useDataContext } from "../../contexts/DataContextProvider";
+import { useTotalCostContext } from "../../contexts/PriceContextProvider";
 
 export const Layout: React.FC = () => {
   const navigate = useNavigate();

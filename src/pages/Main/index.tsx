@@ -2,7 +2,7 @@ import React, { Suspense, useMemo } from "react";
 import { useLoaderData, defer, Await, useLocation } from "react-router-dom";
 import styles from "./Main.module.scss";
 import { ListRender, Loading } from "../../components";
-import { fetchCoincapApi } from "../../api";
+import { fetchCoincapApi } from "../../services/api";
 import { IMain } from "../../types";
 
 const Main: React.FC = () => {

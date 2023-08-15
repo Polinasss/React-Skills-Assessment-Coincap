@@ -1,8 +1,8 @@
 import React from "react";
-import { useDataContext } from "../../providers/DataContextProvider";
+import { useDataContext } from "../../contexts/DataContextProvider";
 import { IPortfolio, IProfileDataObject } from "../../types";
 import trash from "../../assets/trash.png";
-import { useTotalCostContext } from "../../providers/PriceContextProvider";
+import { useTotalCostContext } from "../../contexts/PriceContextProvider";
 import styles from "./Portfolio.module.scss";
 
 export const Portfolio: React.FC<IPortfolio> = ({ setModalWindow, modalWindow }) => {

@@ -3,8 +3,8 @@ import { RouterProvider, Route, createBrowserRouter, createRoutesFromElements } 
 import { mainLoader } from "../pages";
 import styles from "./Router.module.scss";
 import { Layout, ErrorPage } from "../components";
-import DataContextProvider from "../providers/DataContextProvider";
-import TotalCostContext from "../providers/PriceContextProvider";
+import DataContextProvider from "../contexts/DataContextProvider";
+import TotalCostContext from "../contexts/PriceContextProvider";
 
 const LazyMain: React.FC = lazy(() => import(`../pages/Main/index`));
 const LazyElementInfo: React.FC = lazy(() => import(`../pages/ElementInfo`));
@@ -26,7 +26,7 @@ const Navigation: React.FC = () => {
     <div className={styles.routerContainer}>
       <DataContextProvider>
         <TotalCostContext>
-        <RouterProvider router={router} />
+          <RouterProvider router={router} />
         </TotalCostContext>
       </DataContextProvider>
     </div>
