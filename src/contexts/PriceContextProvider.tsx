@@ -16,7 +16,11 @@ const TotalCostContext = ({ children }: ITotalCostContextProps) => {
     }
   }, []);
   useEffect(() => {
-    localStorage.setItem("userTotalCostStore", JSON.stringify(userTotalCost));
+    try {
+      localStorage.setItem("userTotalCostStore", JSON.stringify(userTotalCost));
+    } catch (error) {
+      console.log(error)
+    }
   }, [userTotalCost]);
 
   const delateTotalCost = (userCryptocurrency: IProfileDataObject[] = [], delatedObj:IProfileDataObject[] = []) => {
@@ -36,12 +40,12 @@ const TotalCostContext = ({ children }: ITotalCostContextProps) => {
       const totalCost = arr.reduce((sum, el) => sum + el, 0);
       const previousValue = arr.reduce((sum, el) => sum + el, 0) - arr[arr.length - 1];
       setUserTotalCost(totalCost.toFixed(2));
-      return `${previousValue.toFixed(2)}$ + ${arr[arr.length - 1].toFixed(2)}$ = ${totalCost.toFixed(2)}$ (+${(arr[arr.length - 1] / previousValue * 100).toFixed(2)}%)`
+      return `${previousValue.toFixed(2)}$ + ${arr[arr.length - 1].toFixed(2)}$ = ${totalCost.toFixed(2)}$ (+${(Number(arr[arr.length - 1].toFixed(2)) / Number(previousValue.toFixed(2)) * 100).toFixed(2)}%)`
       } else {
         return ''
       }
     } else {
-      return userTotalCost + '$';
+      return userTotalCost === "" ? "portfolio is empty" : userTotalCost + '$';
     }
   };
 

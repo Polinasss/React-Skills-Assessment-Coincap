@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useDataContext } from "../../contexts/DataContextProvider";
 import { IPortfolio, IProfileDataObject } from "../../types";
 import trash from "../../assets/trash.png";
@@ -8,6 +8,7 @@ import styles from "./Portfolio.module.scss";
 export const Portfolio: React.FC<IPortfolio> = ({ setModalWindow, modalWindow }) => {
   const { userCryptocurrency, setUserCryptocurrency } = useDataContext();
   const { setIsDeleteOrPlus, setDeletedObj, getPortfolioPrice } = useTotalCostContext();
+  const [getPrice, setGetPrice] = useState<string>('');
   
   const deleteItem = (delObj: IProfileDataObject) => {
     setUserCryptocurrency( userCryptocurrency.filter((obj) => obj.name !== delObj.name));
@@ -15,10 +16,15 @@ export const Portfolio: React.FC<IPortfolio> = ({ setModalWindow, modalWindow })
     setDeletedObj(delObj);
   };
 
+  useEffect(() => {
+    setGetPrice(getPortfolioPrice(userCryptocurrency))
+  }, [userCryptocurrency])
+
+
   return (
     <div className={modalWindow ? styles.visible : styles.hidden}>
       <div className={styles.modalBlock}>
-        <h2 className={styles.title}> Total cost of user portfolio = {getPortfolioPrice(userCryptocurrency)} </h2>
+        <h2 className={styles.title}> Total cost of user portfolio = {userCryptocurrency.length >= 1 ? getPrice : 0} </h2>
         <table className={styles.table}>
           <thead>
             <tr>

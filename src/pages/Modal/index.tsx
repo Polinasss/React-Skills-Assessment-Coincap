@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IModal } from "../../types";
+import { IModal, IProfileDataObject } from "../../types";
 import { useDataContext } from "../../contexts/DataContextProvider";
 import { useTotalCostContext } from "../../contexts/PriceContextProvider";
 import styles from "./ModalWindow.module.scss";
@@ -14,12 +14,21 @@ export const Modal: React.FC<IModal> = ({ setModalWindow, modalWindow, data }) =
     if (!cryptocurrencyItem) {
       return;
     }
-    setUserCryptocurrency([ ...userCryptocurrency, {
+    const arr = [...userCryptocurrency];
+    const res: IProfileDataObject[] = arr.filter((obj) => obj.name === data.name);
+    if(res.length === 1) {
+      const indexOfItem = arr.findIndex((obj) => obj.name === data.name);
+      arr[indexOfItem].price = String(Number(arr[indexOfItem].price) + Number(data.priceUsd))
+      arr[indexOfItem].amount = String(Number(arr[indexOfItem].amount) + Number(cryptocurrencyItem));
+      setUserCryptocurrency(arr);
+    } else {
+      setUserCryptocurrency([ ...userCryptocurrency, {
         name: data.name,
         amount: String(cryptocurrencyItem),
         price: data.priceUsd,
       },
     ]);
+    }
     setCryptocurrencyItem("");
     setNumberOfRendering(prev => prev = prev + 1);
     setIsDeleteOrPlus(false);
