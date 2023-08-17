@@ -17,6 +17,10 @@ const ElementInfo: React.FC = () => {
   const [modalData, setModalData] = useState<IData>(startData[0]);
 
   useEffect(() => {
+    navigate('/React-Skills-Assessment-Coincap');
+  }, [])
+
+  useEffect(() => {
     if (id) {
       fetchCoincapApi(id).then(setData);
     }

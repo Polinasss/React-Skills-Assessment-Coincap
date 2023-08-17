@@ -20,9 +20,6 @@ export const Layout: React.FC = () => {
     fetchCoincapApi("").then(setData); 
   }, []);
   useEffect(() => {
-    navigate('/React-Skills-Assessment-Coincap');
-  }, [])
-  useEffect(() => {
     setGetPrice(getPortfolioPrice(userCryptocurrency))
   }, [userCryptocurrency])
 
