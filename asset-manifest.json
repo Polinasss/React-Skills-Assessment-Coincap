@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/React-Skills-Assessment-Coincap/static/css/main.998a440d.css",
-    "main.js": "/React-Skills-Assessment-Coincap/static/js/main.d4a9f7ab.js",
+    "main.js": "/React-Skills-Assessment-Coincap/static/js/main.4d6b8240.js",
     "static/media/loading.gif": "/React-Skills-Assessment-Coincap/static/media/loading.e2ffacc949faa6aeba7c.gif",
     "index.html": "/React-Skills-Assessment-Coincap/index.html",
     "main.998a440d.css.map": "/React-Skills-Assessment-Coincap/static/css/main.998a440d.css.map",
-    "main.d4a9f7ab.js.map": "/React-Skills-Assessment-Coincap/static/js/main.d4a9f7ab.js.map"
+    "main.4d6b8240.js.map": "/React-Skills-Assessment-Coincap/static/js/main.4d6b8240.js.map"
   },
   "entrypoints": [
     "static/css/main.998a440d.css",
-    "static/js/main.d4a9f7ab.js"
+    "static/js/main.4d6b8240.js"
   ]
 }
