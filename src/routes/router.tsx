@@ -11,10 +11,10 @@ const LazyElementInfo: React.FC = lazy(() => import(`../pages/ElementInfo`));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
-      <Route path="/" element={<LazyMain />} loader={mainLoader}  errorElement={<ErrorPage/>}/>
+    <Route path="/React-Skills-Assessment-Coincap" element={<Layout />}>
+      <Route path="/React-Skills-Assessment-Coincap" element={<LazyMain />} loader={mainLoader}  errorElement={<ErrorPage/>}/>
       <Route
-        path="/:id"
+        path="/React-Skills-Assessment-Coincap/:id"
         element={<LazyElementInfo />}
       />
     </Route>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { IPagination } from "../../types";
 import styles from "./Pagination.module.scss";
@@ -9,6 +9,7 @@ import { RenderingPagination } from ".";
 export const Pagination: React.FC<IPagination> = ({paginate,pageNumbers}) => {
   const location = useLocation();
   const navigation = useNavigate();
+  const searchParams = useMemo(() => new URLSearchParams(location.search), [location.search]);
 
   const [pageNumberLimit, setPageNumberLimit] = useState(window.screen.width < 550 ? 3 : 5);
   const [maxPageLimit, setMaxPageLimit] = useState(window.screen.width < 550 ? 3 : 5);
@@ -23,12 +24,12 @@ export const Pagination: React.FC<IPagination> = ({paginate,pageNumbers}) => {
     pageDecrementBtn = (<p className={styles.pageDecrementBtn} onClick={() => goPrevious(currentLocation)}>...</p>);
   }
 
-  const currentLocation = Number(location.search.slice(6));
+  const currentLocation = Number(searchParams.get('page')) || 1;
 
   const goPrevious = (currentLocation: number) => {
-    if (currentLocation !== 1) {
+    if (currentLocation > 1) {
       paginate(currentLocation - 1);
-      navigation(`/?page=${currentLocation - 1}`);
+      navigation(`/React-Skills-Assessment-Coincap/?page=${currentLocation - 1}`);
       if (window.screen.width < 1050 && currentLocation - 1 < minPageLimit) {
         setMaxPageLimit(maxPageLimit - pageNumberLimit);
         setMinPageLimit(minPageLimit - pageNumberLimit);
@@ -37,9 +38,9 @@ export const Pagination: React.FC<IPagination> = ({paginate,pageNumbers}) => {
   };
 
   const goNext = (currentLocation: number) => {
-    if (currentLocation !== 10) {
+    if (currentLocation < 10) {
       paginate(currentLocation + 1);
-      navigation(`/?page=${currentLocation + 1}`);
+      navigation(`/React-Skills-Assessment-Coincap/?page=${currentLocation + 1}`);
       if (window.screen.width < 1050 && currentLocation + 1 > maxPageLimit) {
         setMaxPageLimit(maxPageLimit + pageNumberLimit);
         setMinPageLimit(minPageLimit + pageNumberLimit);

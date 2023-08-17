@@ -19,9 +19,6 @@ export const Layout: React.FC = () => {
   useEffect(() => {
     fetchCoincapApi("").then(setData); 
   }, []);
-  useEffect(() => {
-    navigate("/?page=1");
-  }, []);
 
   useEffect(() => {
     setGetPrice(getPortfolioPrice(userCryptocurrency))

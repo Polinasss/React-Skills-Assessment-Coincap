@@ -14,7 +14,7 @@ const Main: React.FC = () => {
     <Suspense fallback={<Loading />}>
       <Await resolve={data}>
         <div className={styles.main}>
-          <ListRender pageNum={Number(searchParams.get('page'))} />
+          <ListRender pageNum={Number(searchParams.get('page')) || 1} />
         </div>
       </Await>
     </Suspense>
