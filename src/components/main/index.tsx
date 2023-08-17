@@ -1,22 +1,32 @@
-import { IData, IMain, IListRender } from "../../types";
-import { Link, useAsyncValue, useLocation } from "react-router-dom";
+import { IData, IListRender } from "../../types";
+import { Link } from "react-router-dom";
 import styles from "../../pages/Main/Main.module.scss";
-import React, { useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { Pagination } from "../pagination/Pagination";
 import { Modal } from "../../pages";
 import { startData } from "../../constants";
-import { getListOfItems } from "../../utils";
+import { fetchData } from "../../services/api";
+import { Loading } from "../loading";
 
 export const ListRender: React.FC<IListRender> = ({ pageNum }) => {
-  const { data } = useAsyncValue() as IMain;
-
-  const [startPage, setStartPage] = useState((pageNum));
-  const [countOfPages, setCountOfPages] = useState(10);
+  const [startPage, setStartPage] = useState(pageNum);
   const [modalWindow, setModalWindow] = useState<boolean>(false);
   const [modalData, setModalData] = useState<IData>(startData[0]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [data, setData] = useState<IData[]>(startData);
 
   const setPaginate = (pageNumber: number) => setStartPage(pageNumber);
   const setModal = (val: boolean) => setModalWindow(val);
+
+  useEffect(() => {
+    async function getApi () {
+      await setLoading(true);
+      const result = await fetchData(pageNum);
+      await setData(result);
+      await setLoading(false);
+    }
+    getApi();
+  }, [pageNum])
 
   return (
     <div>
@@ -36,7 +46,7 @@ export const ListRender: React.FC<IListRender> = ({ pageNum }) => {
           </tr>
         </thead>
         <tbody>
-          {getListOfItems(startPage, countOfPages, data).currentIndexes.map((obj) => {
+          {loading ? <Loading /> : data.map((obj) => {
             return (
               <tr key={obj.id}>
                 <td>{obj.rank}</td>
@@ -55,7 +65,7 @@ export const ListRender: React.FC<IListRender> = ({ pageNum }) => {
           })}
         </tbody>
       </table>
-      <Pagination paginate={setPaginate} pageNumbers={getListOfItems(startPage, countOfPages, data).pageNumbers} />
+      <Pagination paginate={setPaginate} />
     </div>
   );
 };

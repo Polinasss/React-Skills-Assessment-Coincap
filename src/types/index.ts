@@ -20,7 +20,12 @@ export interface IMain {
 }
 
 export interface IPagination {
-  pageNumbers: number[];
+  paginate: (num: number) => void;
+}
+
+export interface IRenderingPagination {
+  num: number,
+  location: number,
   paginate: (num: number) => void;
 }
 

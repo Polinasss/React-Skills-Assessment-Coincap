@@ -1,12 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Pagination.module.scss";
-
-interface IRenderingPagination {
-    num: number,
-  location: number,
-  paginate: (num: number) => void
-}
+import { IRenderingPagination } from "../../types";
 
 export const RenderingPagination:React.FC<IRenderingPagination> = ( {num, location, paginate} ) => {
   location = location === 0 ? 1 : location;

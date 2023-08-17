@@ -1,8 +1,7 @@
-import React, { lazy } from "react";
+import React, { lazy, Suspense } from "react";
 import { RouterProvider, Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
-import { mainLoader } from "../pages";
 import styles from "./Router.module.scss";
-import { Layout, ErrorPage } from "../components";
+import { Layout, ErrorPage, Loading } from "../components";
 import DataContextProvider from "../contexts/DataContextProvider";
 import TotalCostContext from "../contexts/PriceContextProvider";
 
@@ -12,11 +11,8 @@ const LazyElementInfo: React.FC = lazy(() => import(`../pages/ElementInfo`));
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/React-Skills-Assessment-Coincap" element={<Layout />}>
-      <Route path="/React-Skills-Assessment-Coincap" element={<LazyMain />} loader={mainLoader}  errorElement={<ErrorPage/>}/>
-      <Route
-        path="/React-Skills-Assessment-Coincap/:id"
-        element={<LazyElementInfo />}
-      />
+      <Route path="/React-Skills-Assessment-Coincap" element={<LazyMain />} errorElement={<ErrorPage />} />
+      <Route path="/React-Skills-Assessment-Coincap/:id" element={<LazyElementInfo />} />
     </Route>
   )
 );
@@ -26,7 +22,9 @@ const Navigation: React.FC = () => {
     <div className={styles.routerContainer}>
       <DataContextProvider>
         <TotalCostContext>
-          <RouterProvider router={router} />
+          <Suspense fallback={<Loading />}>
+            <RouterProvider router={router} />
+          </Suspense>
         </TotalCostContext>
       </DataContextProvider>
     </div>
