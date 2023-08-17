@@ -55,7 +55,8 @@ const TotalCostContext = ({ children }: ITotalCostContextProps) => {
     if (isDeleteOrPlus === false) {
       return getTotalCost(userCryptocurrency);
     } else {
-      return userCryptocurrency.length !== 1 ? delateTotalCost(userCryptocurrency, [deleteObj]) : 'portfolio is empty'
+      const emptyPortfolio = () => {setUserTotalCost(''); return 'portfolio is empty'}
+      return userCryptocurrency.length !== 1 ? delateTotalCost(userCryptocurrency, [deleteObj]) : emptyPortfolio();
     }
 
   }

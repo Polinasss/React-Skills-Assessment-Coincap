@@ -4,7 +4,7 @@ import styles from "./ElementInfo.module.scss";
 import { Charts, Loading } from "../../components";
 import { fetchCoincapApi } from "../../services/api";
 import { Modal } from "../Modal";
-import { IData, IMain } from "../../types";
+import { IData } from "../../types";
 import { startData } from "../../constants";
 
 const ElementInfo: React.FC = () => {

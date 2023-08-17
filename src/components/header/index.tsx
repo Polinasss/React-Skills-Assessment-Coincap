@@ -8,6 +8,10 @@ import { useDataContext } from "../../contexts/DataContextProvider";
 import { useTotalCostContext } from "../../contexts/PriceContextProvider";
 
 export const Layout: React.FC = () => {
+  useEffect(() => {
+    navigate('/React-Skills-Assessment-Coincap');
+  }, []);
+
   const navigate = useNavigate();
   const {userCryptocurrency} = useDataContext();
   const { getPortfolioPrice } = useTotalCostContext();
@@ -19,10 +23,6 @@ export const Layout: React.FC = () => {
   useEffect(() => {
     fetchCoincapApi("").then(setData); 
   }, []);
-  
-  useEffect(() => {
-    navigate('/React-Skills-Assessment-Coincap');
-  }, [])
   
   useEffect(() => {
     setGetPrice(getPortfolioPrice(userCryptocurrency))
