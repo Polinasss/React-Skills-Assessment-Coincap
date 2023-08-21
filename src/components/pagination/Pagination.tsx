@@ -29,7 +29,7 @@ export const Pagination: React.FC<IPagination> = ({paginate}) => {
   const goPrevious = (currentLocation: number) => {
     if (currentLocation > 1) {
       paginate(currentLocation - 1);
-      navigation(`/React-Skills-Assessment-Coincap/?page=${currentLocation - 1}`);
+      navigation(`/?page=${currentLocation - 1}`);
       if (window.screen.width < 1050 && currentLocation - 2 < minPageLimit) {
         setMaxPageLimit(maxPageLimit - pageNumberLimit);
         setMinPageLimit(minPageLimit - pageNumberLimit);
@@ -40,7 +40,7 @@ export const Pagination: React.FC<IPagination> = ({paginate}) => {
   const goNext = (currentLocation: number) => {
     if (currentLocation < 10) {
       paginate(currentLocation + 1);
-      navigation(`/React-Skills-Assessment-Coincap/?page=${currentLocation + 1}`);
+      navigation(`/?page=${currentLocation + 1}`);
       if (window.screen.width < 1050 && currentLocation + 1 > maxPageLimit) {
         setMaxPageLimit(maxPageLimit + pageNumberLimit);
         setMinPageLimit(minPageLimit + pageNumberLimit);

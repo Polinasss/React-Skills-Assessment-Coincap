@@ -9,9 +9,9 @@ import { useTotalCostContext } from "../../contexts/PriceContextProvider";
 
 export const Layout: React.FC = () => {
   useEffect(() => {
-    navigate('/React-Skills-Assessment-Coincap');
-  }, []);
-
+    navigate('/');
+  }, [])
+  
   const navigate = useNavigate();
   const {userCryptocurrency} = useDataContext();
   const { getPortfolioPrice } = useTotalCostContext();

@@ -50,7 +50,7 @@ export const ListRender: React.FC<IListRender> = ({ pageNum }) => {
             return (
               <tr key={obj.id}>
                 <td>{obj.rank}</td>
-                <td><Link to={`/React-Skills-Assessment-Coincap/${obj.id}`} state={obj}>{obj.name}</Link></td>
+                <td><Link to={`/${obj.id}`} state={obj}>{obj.name}</Link></td>
                 <td>{"$" + Number(obj.priceUsd).toFixed(2)}</td>
                 <td>{"$" + new Intl.NumberFormat("de-DE").format(Number(obj.marketCapUsd)).slice(0, obj.marketCapUsd.length - 23) + "b"}</td>
                 <td>{"$" + Number(obj.vwap24Hr).toFixed(2)}</td>

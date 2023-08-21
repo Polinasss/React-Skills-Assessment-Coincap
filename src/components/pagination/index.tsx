@@ -11,7 +11,7 @@ export const RenderingPagination:React.FC<IRenderingPagination> = ( {num, locati
         <Link
           key={crypto.randomUUID()}
           className={num === location ? styles.active : styles.item}
-          to={`/React-Skills-Assessment-Coincap/?page=${num}`}
+          to={`/?page=${num}`}
           onClick={() => paginate(num)}
         >
           {num}
