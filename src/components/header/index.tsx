@@ -14,7 +14,7 @@ export const Layout: React.FC = () => {
   
   const navigate = useNavigate();
   const {userCryptocurrency} = useDataContext();
-  const { getPortfolioPrice } = useTotalCostContext();
+  const { getPortfolioPrice, currentTotalCost } = useTotalCostContext();
   const [getPrice, setGetPrice] = useState<string>('');
 
   const [data, setData] = useState<IMain>();
@@ -49,6 +49,7 @@ export const Layout: React.FC = () => {
         <div className={styles.portfolio_container}>
           <button onClick={() => setModalWindow(true)} className={styles.portfolio}>Portfolio</button>
           <p id="portfolioInfo" className={styles.portfolio_info}>{userCryptocurrency.length >= 1 ? getPrice : 0}</p>
+          <p className={styles.portfolio_info}>{currentTotalCost}</p>
         </div>
       </header>
       <Outlet />

@@ -23,6 +23,7 @@ export const Modal: React.FC<IModal> = ({ setModalWindow, modalWindow, data }) =
       setUserCryptocurrency(arr);
     } else {
       setUserCryptocurrency([ ...userCryptocurrency, {
+        id: data.id,
         name: data.name,
         amount: String(cryptocurrencyItem),
         price: data.priceUsd,

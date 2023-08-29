@@ -3,7 +3,7 @@ import { IProfileDataObject, IUserContextInterface, IUserContextProps } from "..
 
 const DataContext = createContext<IUserContextInterface>({} as IUserContextInterface);
 
-const DataContextProvider = ({ children }: IUserContextProps) => { const [userCryptocurrency, setUserCryptocurrency] = useState<IProfileDataObject[]>([{ name: "", amount: "", price: ""}]);
+const DataContextProvider = ({ children }: IUserContextProps) => { const [userCryptocurrency, setUserCryptocurrency] = useState<IProfileDataObject[]>([{ id: "", name: "", amount: "", price: ""}]);
 
   useEffect(() => {
     try {

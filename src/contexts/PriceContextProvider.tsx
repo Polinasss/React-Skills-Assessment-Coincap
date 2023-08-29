@@ -7,7 +7,8 @@ const TotalCostContext = ({ children }: ITotalCostContextProps) => {
   const [userTotalCost, setUserTotalCost] = useState<string>("");
   const [numberOfRendering, setNumberOfRendering] = useState<number>(0);
   const [isDeleteOrPlus, setIsDeleteOrPlus] = useState<boolean>(false);
-  const [deleteObj, setDeletedObj] = useState<IProfileDataObject>({name: '', amount: '', price: ''});
+  const [deleteObj, setDeletedObj] = useState<IProfileDataObject>({id: "", name: '', amount: '', price: ''});
+  const [currentTotalCost, setCurrentTotalCost] = useState('0')
 
   useEffect(() => {
     try {
@@ -66,6 +67,8 @@ const TotalCostContext = ({ children }: ITotalCostContextProps) => {
     getPortfolioPrice: getPortfolioPrice,
     setIsDeleteOrPlus: setIsDeleteOrPlus, 
     setDeletedObj: setDeletedObj,
+    currentTotalCost, 
+    setCurrentTotalCost,
   };
 
   return (

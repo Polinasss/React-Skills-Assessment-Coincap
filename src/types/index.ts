@@ -58,6 +58,7 @@ export interface IListRender {
 }
 
 export type IProfileDataObject = {
+  id: string;
   name: string;
   amount: string;
   price: string;
@@ -71,6 +72,8 @@ export interface IUserContextProps {
 }
 
 export interface ITotalCostContextInterface {
+  currentTotalCost: string, 
+  setCurrentTotalCost: Dispatch<SetStateAction<string>>;
   setNumberOfRendering: Dispatch<SetStateAction<number>>;
   getPortfolioPrice: (userCryptocurrency: IProfileDataObject[]) => string;
   setIsDeleteOrPlus: Dispatch<SetStateAction<boolean>>;

@@ -12,3 +12,9 @@ export const fetchData = async (page: number) => {
   const json = await response.json();
   return json.data
 }
+
+export const fetchCurrentCoints = async(ids: string[]) => {
+  const response = await fetch(`https://api.coincap.io/v2/assets?ids=${ids.join()}`);
+  const json = await response.json();
+  return json.data
+}
