@@ -34,7 +34,8 @@ export const Portfolio: React.FC<IPortfolio> = ({
     })
     const reduceRes = portfolio.reduce((a,b) => a +b, 0);
     const reduceCurres = currentPortfolio.reduce((a,b) => a +b, 0);
-    const persent = reduceCurres * 100 / reduceRes - 100;
+    const persent = reduceCurres === reduceRes ? 0 : ((reduceCurres / reduceRes) - 1 || 0);
+    console.log(persent)
     setCurrentTotalCost(`${(reduceRes).toFixed(2)} → ${(reduceCurres).toFixed(2)} (${(persent).toFixed(5)}%)`)
     return `${(reduceRes).toFixed(2)}$ → ${(reduceCurres).toFixed(2)}$ (${(persent).toFixed(5)}%)`
   }
@@ -84,14 +85,8 @@ export const Portfolio: React.FC<IPortfolio> = ({
                       {(Number(dataChange.filter((el) => el.name === obj.name)[0]?.priceUsd) * Number(obj.amount)).toFixed(2)}
                     </td>
                     <td key={crypto.randomUUID()}>
-                      {(
-                        (Number(
-                          dataChange.filter((el) => el.name === obj.name)[0]
-                            ?.priceUsd
-                        ) *
-                          Number(obj.amount)) /
-                        (Number(obj.price) * Number(obj.amount))
-                      ).toFixed(3)}%
+                      {((Number(dataChange.filter((el) => el.name === obj.name)[0]?.priceUsd) * Number(obj.amount)) / (Number(obj.price) * Number(obj.amount)) - 1
+                      ).toFixed(5)}%
                     </td>
                     <td
                       style={{ width: "fit-content" }}
